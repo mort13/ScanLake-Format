@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "files": {
     "scans": {
       "description": "One row per scanned deposit.",
@@ -17,10 +17,10 @@
         { "name": "region",       "type": "STRING", "description": "Region within the gravity well, \"none\" if unset." },
         { "name": "place",        "type": "STRING", "description": "Named place, \"none\" if unset." },
         { "name": "deposit",      "type": "STRING", "description": "Deposit type, \"none\" if unset." },
-        { "name": "mass",         "type": "INT32",  "description": "Mass from the scan." },
+        { "name": "mass",         "type": ["INT32", "DOUBLE"], "description": "Mass from the scan. Whole numbers, except deposits under 1 SCU (volume shown in mSCU), whose mass has decimals (e.g. 12.34): write DOUBLE for those." },
         { "name": "resistance",   "type": "INT32",  "description": "Resistance from the scan." },
         { "name": "instability",  "type": "DOUBLE", "description": "Instability from the scan." },
-        { "name": "volume",       "type": "DOUBLE", "description": "Volume from the scan." }
+        { "name": "volume",       "type": "DOUBLE", "description": "Volume from the scan, in SCU (the HUD shows mSCU under 1 SCU: 25.26m SCU = 0.02526)." }
       ]
     },
     "compositions": {
