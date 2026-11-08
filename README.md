@@ -1,8 +1,14 @@
 # ScanLake Format
 
-The Parquet format ScanLake accepts. [`format.json`](format.json) lists, for each of the three
-files an upload consists of (`scans`, `compositions`, `confidences`), the columns the file must
-have and their types.
+The Parquet format ScanLake accepts. [`format.json`](format.json) lists, for each file an upload
+can consist of, the columns the file must have and their types:
+
+| File | In an upload |
+| --- | --- |
+| `scans` | required |
+| `compositions` | required |
+| `confidences` | optional |
+| `positions` | optional: the ship position per scan, read from the game's debug text; sent only when the player opts in |
 
 ScanLake Store checks every upload against the `main` branch of this file and rejects files that
 don't match. Edit and push here to change the format; the Store picks it up within about ten
@@ -21,7 +27,7 @@ minutes (GitHub's raw CDN and the Store each cache it for five).
 {
   "version": 1,                      // bump when the format changes; shown in Store errors
   "files": {
-    "scans": {                       // one of: scans, compositions, confidences
+    "scans": {                       // one of: scans, compositions, confidences, positions
       "description": "…",
       "allowExtraColumns": false,    // default false: columns not listed below are rejected
       "columns": [

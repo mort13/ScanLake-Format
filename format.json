@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "files": {
     "scans": {
       "description": "One row per scanned deposit.",
@@ -46,6 +46,22 @@
         { "name": "resistance_conf",  "type": "DOUBLE" },
         { "name": "instability_conf", "type": "DOUBLE" },
         { "name": "volume_conf",      "type": "DOUBLE" }
+      ]
+    },
+    "positions": {
+      "description": "Optional. Where the ship was when the scan was taken, read from the game's debug text (r_DisplayInfo): one row per \"Zone: <name> Pos: x y z\" line.",
+      "allowExtraColumns": false,
+      "columns": [
+        { "name": "capture_id", "type": "STRING", "description": "UUID v4 of the parent scan." },
+        { "name": "zone_index", "type": "INT32",  "description": "0-based position of the Zone line in the debug text, top first (0 is usually the ship)." },
+        { "name": "zone",       "type": "STRING", "description": "Zone name as shown, e.g. ab_mine_pyro_regionb_sml_001, SolarSystem_906804811333, Root." },
+        { "name": "pos_x",      "type": "DOUBLE", "description": "Position in the zone, in metres (the game shows m or km)." },
+        { "name": "pos_y",      "type": "DOUBLE", "description": "Position in the zone, in metres." },
+        { "name": "pos_z",      "type": "DOUBLE", "description": "Position in the zone, in metres." },
+        { "name": "cam_dir_x",  "type": "DOUBLE", "description": "First CamDir value as shown, in degrees; the same on every row of a scan. Empty if CamDir was not read." },
+        { "name": "cam_dir_y",  "type": "DOUBLE", "description": "Second CamDir value as shown, in degrees." },
+        { "name": "cam_dir_z",  "type": "DOUBLE", "description": "Third CamDir value as shown, in degrees." },
+        { "name": "confidence", "type": "DOUBLE", "description": "Lowest OCR match score of the line, 0..1." }
       ]
     }
   }
